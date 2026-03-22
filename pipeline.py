@@ -255,7 +255,7 @@ def _strip_html(html: str) -> str:
     return s.get_text()
 
 
-def _parse_ram_gb(requirements_text: str) -> float | None:
+def _parse_ram_gb(requirements_text: str) :
     """
     Extract RAM value in GB from Steam's requirements string.
     Handles formats like '16 GB RAM', '8GB Memory', '32 GB', '4096 MB RAM'.
@@ -392,8 +392,6 @@ def build_dashboard(conn: sqlite3.Connection) -> go.Figure:
         # Add vertical line at AI shock period (mid-2022)
         fig.add_vline(
             x="2022-07-01", line_dash="dash", line_color="rgba(255,100,100,0.6)",
-            annotation_text="AI Supply Shock", annotation_position="top right",
-            row=1, col=1,
         )
 
     # ── Panel 2: NVIDIA Revenue ──────────────────────────────────────────────
