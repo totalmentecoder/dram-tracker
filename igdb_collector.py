@@ -41,25 +41,8 @@ PLATFORM_IDS = {
     "Xbox_One":   49,
 }
 
-# Same game list as pipeline.py
-STEAM_GAMES = {
-    "Cyberpunk 2077":        1091500,
-    "Red Dead Redemption 2": 1174180,
-    "Hogwarts Legacy":       990080,
-    "The Last of Us Part I": 1888930,
-    "Alan Wake 2":           1850050,
-    "Star Wars Outlaws":     2803270,
-    "Black Myth: Wukong":    2358720,
-    "Call of Duty MW3":      2519060,
-    "Baldur's Gate 3":       1086940,
-    "Elden Ring":            1245620,
-    "God of War":            1593500,
-    "Marvel's Spider-Man":   1817070,
-    "Forza Horizon 5":       1551360,
-    "Halo Infinite":         1240440,
-    "A Plague Tale Requiem": 1952490,
-}
-
+# Same logic as pipeline.py
+from games_list import STEAM_GAMES
 
 # ── Auth ─────────────────────────────────────────────────────────────────────
 

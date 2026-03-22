@@ -54,25 +54,8 @@ FRED_SERIES = {
     "memory_ppi": "PCU334413A334413A",   # Memory chips specifically
 }
 
-# Steam App IDs for cross-platform AAA titles (expand this list)
-# Format: {"title": steam_app_id}
-STEAM_GAMES = {
-    "Cyberpunk 2077":        1091500,
-    "Red Dead Redemption 2": 1174180,
-    "Hogwarts Legacy":       990080,
-    "The Last of Us Part I": 1888930,
-    "Alan Wake 2":           1850050,
-    "Star Wars Outlaws":     2803270,
-    "Black Myth: Wukong":    2358720,
-    "Call of Duty MW3":      2519060,
-    "Baldur's Gate 3":       1086940,
-    "Elden Ring":            1245620,
-    "God of War":            1593500,
-    "Marvel's Spider-Man":   1817070,
-    "Forza Horizon 5":       1551360,
-    "Halo Infinite":         1240440,
-    "A Plague Tale Requiem": 1952490,
-}
+# Steam Games: impèorted from games_list.py
+from games_list import STEAM_GAMES
 
 # ── Database setup ───────────────────────────────────────────────────────────
 
@@ -391,23 +374,42 @@ def build_dashboard(conn: sqlite3.Connection) -> go.Figure:
         )
         # Add vertical line at AI shock period (mid-2022)
         fig.add_vline(
-            x="2022-07-01", line_dash="dash", line_color="rgba(255,100,100,0.6)",
+            x="2022-01-01", line_dash="dash", line_color="rgba(255,100,100,0.6)",
         )
 
-    # ── Panel 2: NVIDIA Revenue ──────────────────────────────────────────────
-    nvda_df = pd.read_sql(
-        "SELECT period, revenue_usd FROM nvidia_financials ORDER BY period",
+    # ── Panel 2: NVIDIA Segment Revenue ─────────────────────────────────────
+    seg_df = pd.read_sql(
+        """SELECT period, segment, revenue_usd
+        FROM nvidia_financials
+        WHERE segment IN ('data_center', 'gaming')
+        ORDER BY period""",
         conn,
     )
-    if not nvda_df.empty:
-        nvda_df["period"] = pd.to_datetime(nvda_df["period"])
-        nvda_df["revenue_bn"] = nvda_df["revenue_usd"] / 1e9
+    if not seg_df.empty:
+        seg_df["period"] = pd.to_datetime(seg_df["period"])
+        seg_df["revenue_bn"] = seg_df["revenue_usd"] / 1e9
+        dc   = seg_df[seg_df["segment"] == "data_center"]
+        game = seg_df[seg_df["segment"] == "gaming"]
         fig.add_trace(
-            go.Bar(
-                x=nvda_df["period"], y=nvda_df["revenue_bn"],
-                name="NVIDIA Total Revenue",
-                marker_color="#76b900",
+            go.Scatter(
+                x=dc["period"], y=dc["revenue_bn"],
+                mode="lines", name="Data Center & AI",
+                line=dict(color="#76b900", width=2.5),
             ),
+            row=2, col=1,
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=game["period"], y=game["revenue_bn"],
+                mode="lines", name="Gaming",
+                line=dict(color="#00b4d8", width=2.5),
+            ),
+            row=2, col=1,
+        )
+        fig.add_vline(
+            x="2022-01-01",
+            line_dash="dash",
+            line_color="rgba(255,100,100,0.7)",
             row=2, col=1,
         )
 
