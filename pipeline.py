@@ -493,6 +493,8 @@ def run_pipeline(
         # Note: Steam API fetches take ~25 seconds for the default game list
         # due to the polite rate-limit delay.
         fetch_steam_requirements(conn)
+        from manual_loader import load_manual_overrides
+        load_manual_overrides(conn)
 
     fig = build_dashboard(conn)
 
