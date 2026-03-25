@@ -1,0 +1,59 @@
+
+> cat("DiD Regression Results\n")
+DiD Regression Results
+
+> cat("Thesis: Hardware Cannibalization and Software Strategy\n")
+Thesis: Hardware Cannibalization and Software Strategy
+
+> cat("Author: Salvatore Caldara, Tilburg University 2025-2026\n\n")
+Author: Salvatore Caldara, Tilburg University 2025-2026
+
+
+> summary(m1)
+OLS estimation, Dep. Var.: min_ram_gb
+Observations: 92
+Standard-errors: Heteroskedasticity-robust 
+                 Estimate Std. Error       t value   Pr(>|t|)    
+(Intercept)  1.600000e+01 0.00000001  1.600000e+09  < 2.2e-16 ***
+pc_dummy    -8.413793e+00 0.35087126 -2.397972e+01  < 2.2e-16 ***
+post         7.110000e-15 0.00000001  7.110000e-07 0.99999943    
+did          4.060852e+00 1.08247729  3.751443e+00 0.00031447 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 2.05605   Adj. R2: 0.758428
+
+> summary(m2)
+OLS estimation, Dep. Var.: min_ram_gb
+Observations: 92
+Fixed-effects: year: 7
+Standard-errors: Heteroskedasticity-robust 
+         Estimate Std. Error   t value  Pr(>|t|)    
+pc_dummy -8.41379   0.349101 -24.10133 < 2.2e-16 ***
+did       4.06085   1.034003   3.92731 0.0001768 ***
+... 1 variable was removed because of collinearity (post)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 1.92086     Adj. R2: 0.77645 
+                Within R2: 0.777699
+
+> summary(m3)
+OLS estimation, Dep. Var.: min_ram_gb
+Observations: 92
+Fixed-effects: year: 7
+Standard-errors: Heteroskedasticity-robust 
+            Estimate Std. Error   t value   Pr(>|t|)    
+pc_dummy   -7.822426   0.451280 -17.33388  < 2.2e-16 ***
+did         3.685657   1.054189   3.49620 0.00076453 ***
+rec_ram_gb  0.204162   0.110941   1.84027 0.06934624 .  
+... 1 variable was removed because of collinearity (post)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 1.84576     Adj. R2: 0.791073
+                Within R2: 0.794743
+
+> cat("Results saved: did_results.txt\n")
+Results saved: did_results.txt
+
+> cat("\nDone. Check did_plot.png and did_results.txt in your dram-tracker folder.\n")
+
+Done. Check did_plot.png and did_results.txt in your dram-tracker folder.
