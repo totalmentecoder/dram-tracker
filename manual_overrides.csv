@@ -1,9 +1,14 @@
-title,min_ram_gb,rec_ram_gb,source
-Far Cry 6,8.0,16.0,PCGamingWiki
-Fifa 23,8.0,12.0,PCGamingWiki
-F1 24,8.0,16.0,PCGamingWiki
-Assassin's Creed Mirage,8.0,16.0,PCGamingWiki
-Fifa 21,8.0,,PCGamingWiki
-NBA 2K21,4.0,8.0,PCGamingWiki
-NBA 2K22,4.0,8.0,PCGamingWiki
-Star Wars Outlaws,16.0,,PCGamingWiki
+title,min_ram_gb,rec_ram_gb,release_date,source
+Far Cry 6,8.0,16.0,19 Oct 2021,PCGamingWiki
+Fifa 23,8.0,12.0,30 Sep 2022,PCGamingWiki
+F1 24,8.0,16.0,31 May 2024,PCGamingWiki
+Assassin's Creed Mirage,8.0,16.0,5 Oct 2023,PCGamingWiki
+Assassin's Creed Shadows,8.0,12.0,20 Mar 2025,PCGamingWiki
+Watch Dogs Legion,4.0,8.0,29 Oct 2020,PCGamingWiki
+Fifa 21,8.0,,,PCGamingWiki
+NBA 2K21,4.0,8.0,,PCGamingWiki
+NBA 2K22,4.0,8.0,,PCGamingWiki
+Star Wars Outlaws,16.0,,,PCGamingWiki
+Assetto Corsa Competizione,4.0,16.0,,PCGamingWiki
+NBA 2K24,6.0,,,PCGamingWiki
+Call of Duty Vanguard,6.0,12.0,21 Nov 2021,PCGamingWiki
