@@ -2,13 +2,13 @@
 
 **A live Python data pipeline correlating AI infrastructure demand with consumer DRAM pricing and PC game RAM requirements.**
 
-> Built alongside my MSc thesis: *"Hardware Cannibalization and Software Strategy: AI Infrastructure Demand, DRAM Costs, and PC Game System Requirements"* — Tilburg University, 2025–2026.
+> Built alongside my MSc thesis: *"Hardware Cannibalization and Software Strategy: AI Infrastructure Demand, DRAM Costs, and PC Game System Requirements"* - Tilburg University, 2025–2026.
 
 ---
 
 ## The Thesis in One Chart
 
-When NVIDIA's Data Center revenue overtook its Gaming revenue in 2022, semiconductor fabs pivoted toward High Bandwidth Memory (HBM) for AI GPUs. HBM and consumer DDR4/DDR5 compete for the **same silicon wafers** — so as AI demand surged, consumer DRAM supply tightened and prices broke their historical downward trend.
+When NVIDIA's Data Center revenue overtook its Gaming revenue in 2022, semiconductor fabs pivoted toward High Bandwidth Memory (HBM) for AI GPUs. HBM and consumer DDR4/DDR5 compete for the **same silicon wafers** - so as AI demand surged, consumer DRAM supply tightened and prices broke their historical downward trend.
 
 This project tracks that chain empirically:
 
@@ -28,10 +28,16 @@ The research question: **do game developers suppress hardware requirements when 
 | Data Source | What it captures | API |
 |---|---|---|
 | **FRED** (Federal Reserve) | Semiconductor Producer Price Index — manufacturing cost proxy for DRAM | Free, key required |
+<<<<<<< HEAD
 | **yfinance / NVIDIA IR** | NVIDIA quarterly revenue; Data Center vs Gaming segment split loaded separately via quarterly CSV | Free |
 | **Steam Store API** | Minimum & recommended RAM requirements per AAA title, release dates | Free, no auth |
 | **IGDB** | Cross-platform title detection; console counterparts for DiD control group | Free, Twitch auth |
 | **PCGamingWiki** | Historical RAM requirements (2000–2022) for pre-shock baseline trend | Free, no auth |
+=======
+| **yfinance / NVIDIA IR** | NVIDIA quarterly revenue, Data Center vs Gaming segment split | Free, manual |
+| **Steam Store API** | Minimum & recommended RAM requirements per AAA title, release dates | Free, no auth |
+| **IGDB** | Cross-platform titles, console counterparts for DiD control group | Free, Twitch auth |
+>>>>>>> 0ebe093c4fdac8b0a298fa88237d808f984d29ab
 
 All data is persisted to a local **SQLite** database and visualised in an interactive **Plotly** dashboard.
 
@@ -96,7 +102,7 @@ dram-tracker/
 
 ## Econometric Design (Thesis)
 
-The pipeline feeds a **Difference-in-Differences (DiD)** model comparing PC games (treatment — exposed to DRAM price volatility) against their console counterparts (control — fixed hardware specs).
+The pipeline feeds a **Difference-in-Differences (DiD)** model comparing PC games (treatment - exposed to DRAM price volatility) against their console counterparts (control - fixed hardware specs).
 
 ```
 RAMᵢₜ = α + β₁·PC_dummy + β₂·Post + β₃·(PC × Post) + γ·Xᵢₜ + εᵢₜ
@@ -123,10 +129,16 @@ Parallel trends are verified via a pre-period interaction test (`PC_dummy × Yea
 
 > *Updated as data collection and analysis progress.*
 
+<<<<<<< HEAD
 - The Semiconductor PPI inflects upward in **Q3 2022**, coinciding with NVIDIA's first quarter where Data Center revenue exceeded Gaming revenue.
 - Raw (unadjusted) DiD signal: minimum PC RAM requirements increased by approximately **+1.1 GB** in the AI-intensive period relative to the console trend — contrary to the flattening hypothesis. Regression controls (year fixed effects, recommended RAM) may shift this estimate.
 - Full β₃ estimate with standard errors pending final regression run.
 - AI upscaling adoption (DLSS/FSR) **[finding TBC]**.
+=======
+- The Semiconductor PPI inflects upward in **Q1 2022**, coinciding with NVIDIA's first quarter where Data Center revenue exceeded Gaming revenue.
+- Minimum PC RAM requirements for AAA titles **[finding TBC after full data collection]**.
+- AI upscaling adoption (DLSS/FSR tags in SteamDB) **[finding TBC]**.
+>>>>>>> 0ebe093c4fdac8b0a298fa88237d808f984d29ab
 
 ---
 
