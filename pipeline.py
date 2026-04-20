@@ -445,6 +445,13 @@ def build_dashboard(conn: sqlite3.Connection) -> go.Figure:
             ),
             row=3, col=1,
         )
+        
+        fig.add_vline(
+            x="2022-01-01",
+            line_dash="dash",
+            line_color="rgba(255,100,100,0.7)",
+            row=2, col=1            
+        )
 
     # ── Layout ───────────────────────────────────────────────────────────────
     fig.update_layout(
