@@ -84,6 +84,7 @@ def init_db(db_path: Path = DB_PATH) -> sqlite3.Connection:
         CREATE TABLE IF NOT EXISTS game_requirements (
             app_id          INTEGER NOT NULL,
             title           TEXT NOT NULL,
+            genre           TEXT,
             min_ram_gb      REAL,
             rec_ram_gb      REAL,
             release_date    TEXT,
@@ -271,7 +272,7 @@ def fetch_steam_requirements(conn: sqlite3.Connection, delay: float = 1.5) -> pd
     rows = []
     fetched_at = datetime.utcnow().isoformat()
 
-    for title, app_id in STEAM_GAMES.items():
+    for title, (app_id, genre) in STEAM_GAMES.items():
         url = (
             f"https://store.steampowered.com/api/appdetails"
             f"?appids={app_id}&filters=basic,pc_requirements,release_date"
@@ -300,6 +301,7 @@ def fetch_steam_requirements(conn: sqlite3.Connection, delay: float = 1.5) -> pd
             rows.append({
                 "app_id":       app_id,
                 "title":        title,
+                "genre":        genre,
                 "min_ram_gb":   min_ram,
                 "rec_ram_gb":   rec_ram,
                 "release_date": rel_date,
@@ -322,8 +324,8 @@ def fetch_steam_requirements(conn: sqlite3.Connection, delay: float = 1.5) -> pd
     cur = conn.cursor()
     cur.executemany(
         """INSERT OR REPLACE INTO game_requirements
-           (app_id, title, min_ram_gb, rec_ram_gb, release_date, fetched_at, raw_min_req)
-           VALUES (:app_id, :title, :min_ram_gb, :rec_ram_gb,
+           (app_id, title, genre, min_ram_gb, rec_ram_gb, release_date, fetched_at, raw_min_req)
+           VALUES (:app_id, :title, :genre, :min_ram_gb, :rec_ram_gb,
                    :release_date, :fetched_at, :raw_min_req)""",
         df.to_dict("records"),
     )
