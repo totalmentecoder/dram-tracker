@@ -1,0 +1,73 @@
+title,genre,year,release_date,min_ram_gb,rec_ram_gb,post,time_index,time_since_break,period
+Batman Arkham Knight,Action-Adventure,2015,"23 Jun, 2015",6.0,8.0,0,0,0,pre_ai
+Just Cause 3,Action-Adventure,2015,"30 Nov, 2015",8.0,8.0,0,0,0,pre_ai
+F1 2015,Sports,2015,"9 Jul, 2015",4.0,8.0,0,0,0,pre_ai
+Metal Gear Solid V,Action-Adventure,2015,"1 Sep, 2015",4.0,8.0,0,0,0,pre_ai
+The Witcher 3,Action-RPG,2015,"18 May, 2015",6.0,8.0,0,0,0,pre_ai
+Call of Duty Black Ops III,FPS,2015,"5 Nov, 2015",6.0,,0,0,0,pre_ai
+NBA 2K16,Sports,2015,29 Sep 2015,4.0,,0,0,0,pre_ai
+Rainbow Six Siege,FPS,2015,"1 Dec, 2015",8.0,8.0,0,0,0,pre_ai
+Fallout 4,Action-RPG,2015,"9 Nov, 2015",8.0,8.0,0,0,0,pre_ai
+Assassin's Creed Syndicate,Action-Adventure,2015,"18 Nov, 2015",6.0,8.0,0,0,0,pre_ai
+Call of Duty Infinite Warfare,FPS,2016,"3 Nov, 2016",8.0,,0,1,0,pre_ai
+Deus Ex Mankind Divided,Action-RPG,2016,"23 Aug, 2016",8.0,16.0,0,1,0,pre_ai
+F1 2016,Sports,2016,"7 Sep, 2016",8.0,8.0,0,1,0,pre_ai
+Mafia III,Action-Adventure,2016,7 Oct 2016,6.0,8.0,0,1,0,pre_ai
+Dishonored 2,Action-Adventure,2016,"11 Nov, 2016",8.0,16.0,0,1,0,pre_ai
+Watch Dogs 2,Action-Adventure,2016,"28 Nov, 2016",6.0,8.0,0,1,0,pre_ai
+Middle Earth Shadow of War,Action-RPG,2017,"9 Oct, 2017",6.0,12.0,0,2,0,pre_ai
+Call of Duty WWII,FPS,2017,"2 Nov, 2017",8.0,,0,2,0,pre_ai
+F1 2017,Sports,2017,"24 Aug, 2017",8.0,8.0,0,2,0,pre_ai
+NBA 2K18,Sports,2017,"2 Feb, 2017",4.0,8.0,0,2,0,pre_ai
+Assassin's Creed Origins,Action-Adventure,2017,"26 Oct, 2017",6.0,8.0,0,2,0,pre_ai
+Wolfenstein II,FPS,2017,"26 Oct, 2017",8.0,16.0,0,2,0,pre_ai
+FIFA 18,Sports,2017,29 Sep 2017,8.0,16.0,0,2,0,pre_ai
+Monster Hunter World,Action-RPG,2018,"8 Aug, 2018",8.0,8.0,0,3,0,pre_ai
+Shadow of the Tomb Raider,Action-Adventure,2018,"14 Sep, 2018",8.0,16.0,0,3,0,pre_ai
+F1 2018,Sports,2018,"23 Aug, 2018",8.0,8.0,0,3,0,pre_ai
+Assassin's Creed Odyssey,Action-Adventure,2018,"5 Oct, 2018",8.0,8.0,0,3,0,pre_ai
+Far Cry 5,FPS,2018,"26 Mar, 2018",8.0,8.0,0,3,0,pre_ai
+FIFA 19,Sports,2018,28 Sep 2018,8.0,16.0,0,3,0,pre_ai
+Red Dead Redemption 2,Action-Adventure,2019,"5 Dec, 2019",8.0,12.0,0,4,0,pre_ai
+Assetto Corsa Competizione,Sports,2019,"29 May, 2019",4.0,16.0,0,4,0,pre_ai
+Resident Evil 3,Action-Adventure,2020,"2 Apr, 2020",8.0,8.0,0,5,0,pre_ai
+FIFA 21,Sports,2020,"11 Jun, 2020",8.0,4.0,0,5,0,pre_ai
+FIFA 17,Sports,2020,"14 Oct, 2020",8.0,8.0,0,5,0,pre_ai
+Control,Action-Adventure,2020,"27 Aug, 2020",8.0,16.0,0,5,0,pre_ai
+Mafia Definitive Edition,Action-Adventure,2020,"24 Sep, 2020",6.0,16.0,0,5,0,pre_ai
+Cyberpunk 2077,Action-RPG,2020,"9 Dec, 2020",12.0,16.0,0,5,0,pre_ai
+Watch Dogs Legion,Action-Adventure,2020,29 Oct 2020,4.0,8.0,0,5,0,pre_ai
+Battlefield 2042,FPS,2021,"19 Nov, 2021",8.0,16.0,0,6,0,pre_ai
+Resident Evil Village,Action-Adventure,2021,"6 May, 2021",8.0,16.0,0,6,0,pre_ai
+FIFA 16,Sports,2021,"13 Apr, 2021",4.0,8.0,0,6,0,pre_ai
+F1 2021,Sports,2021,"15 Jul, 2021",8.0,16.0,0,6,0,pre_ai
+Call of Duty Vanguard,FPS,2021,21 Nov 2021,6.0,12.0,0,6,0,pre_ai
+Halo Infinite,FPS,2021,"15 Nov, 2021",8.0,16.0,0,6,0,pre_ai
+Forza Horizon 5,Sports,2021,"8 Nov, 2021",8.0,16.0,0,6,0,pre_ai
+Dying Light 2,Action-Adventure,2022,"3 Feb, 2022",8.0,16.0,0,7,0,pre_ai
+Assassin's Creed Valhalla,Action-Adventure,2022,"6 Dec, 2022",8.0,8.0,0,7,0,pre_ai
+Elden Ring,Action-RPG,2022,"24 Feb, 2022",12.0,16.0,0,7,0,pre_ai
+FIFA 23,Sports,2022,30 Sep 2022,8.0,12.0,0,7,0,pre_ai
+FF7 Remake Intergrade,Action-RPG,2022,"17 Jun, 2022",8.0,12.0,0,7,0,pre_ai
+Uncharted Legacy of Thieves,Action-Adventure,2022,"19 Oct, 2022",8.0,16.0,0,7,0,pre_ai
+God of War,Action-Adventure,2022,"14 Jan, 2022",8.0,8.0,0,7,0,pre_ai
+A Plague Tale Requiem,Action-Adventure,2022,"14 Apr, 2022",8.0,16.0,0,7,0,pre_ai
+Marvel's Spider-Man Remastered,Action-Adventure,2022,"12 Aug, 2022",8.0,16.0,0,7,0,pre_ai
+F1 22,Sports,2022,"1 Jul, 2022",8.0,16.0,0,7,0,pre_ai
+Hogwarts Legacy,Action-RPG,2023,"10 Feb, 2023",16.0,16.0,1,8,1,ai_intensive
+Baldur's Gate 3,Action-RPG,2023,"3 Aug, 2023",8.0,16.0,1,8,1,ai_intensive
+The Last of Us Part I,Action-Adventure,2023,"28 Mar, 2023",16.0,16.0,1,8,1,ai_intensive
+F1 23,Sports,2023,"15 Jun, 2023",8.0,16.0,1,8,1,ai_intensive
+Resident Evil 4 Remake,Action-Adventure,2023,"23 Mar, 2023",8.0,16.0,1,8,1,ai_intensive
+NBA 2K24,Sports,2023,"7 Sep, 2023",6.0,8.0,1,8,1,ai_intensive
+FIFA 24,Sports,2023,"28 Sep, 2023",8.0,12.0,1,8,1,ai_intensive
+Call of Duty MW3 2023,FPS,2023,"10 Nov, 2023",8.0,16.0,1,8,1,ai_intensive
+Assassin's Creed Mirage,Action-Adventure,2023,5 Oct 2023,8.0,16.0,1,8,1,ai_intensive
+NBA 2K25,Sports,2024,"5 Dec, 2024",16.0,16.0,1,9,2,ai_intensive
+Alan Wake 2,Action-Adventure,2024,"19 Dec, 2024",16.0,24.0,1,9,2,ai_intensive
+F1 24,Sports,2024,31 May 2024,8.0,16.0,1,9,2,ai_intensive
+Black Myth: Wukong,Action-RPG,2024,"19 Aug, 2024",16.0,16.0,1,9,2,ai_intensive
+Star Wars Outlaws,Action-Adventure,2024,"30 Jan, 2024",16.0,6.0,1,9,2,ai_intensive
+Monster Hunter Wilds,Action-RPG,2025,"27 Feb, 2025",16.0,16.0,1,10,3,ai_intensive
+FF7 Rebirth,Action-RPG,2025,"23 Jan, 2025",16.0,16.0,1,10,3,ai_intensive
+Assassin's Creed Shadows,Action-Adventure,2025,20 Mar 2025,8.0,12.0,1,10,3,ai_intensive

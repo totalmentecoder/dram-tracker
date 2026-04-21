@@ -4,20 +4,12 @@ Manual Overrides Loader
 Loads manually verified RAM requirements from manual_overrides.csv
 into the dram_tracker SQLite database, correcting bad Steam API data.
 
-Sources for manual data:
-- PCGamingWiki: https://www.pcgamingwiki.com
-- These values have been manually verified by the researcher.
-
-Why this exists:
-- Steam API returns incomplete or wrong data for some titles
-- Delisted games (e.g. old FIFA entries) have no Steam API data
-- This script ensures the database always reflects verified values
-
 Run this AFTER pipeline.py to apply corrections.
 """
 
 import sqlite3
 import logging
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
@@ -29,20 +21,7 @@ DB_PATH  = Path("dram_tracker.db")
 CSV_PATH = Path("manual_overrides.csv")
 
 
-def load_manual_overrides(
-    conn: sqlite3.Connection,
-    csv_path: Path = CSV_PATH,
-) -> None:
-    """
-    Read manual_overrides.csv and update matching rows in game_requirements.
-    
-    Matches on title (case-insensitive). Only updates min_ram_gb and
-    rec_ram_gb — all other fields (release_date, app_id, etc.) are
-    preserved from the original Steam fetch.
-    
-    If a title in the CSV doesn't exist in the database at all,
-    it logs a warning so you know to add it via pipeline.py first.
-    """
+def load_manual_overrides(conn, csv_path=CSV_PATH):
     if not csv_path.exists():
         raise FileNotFoundError(f"CSV not found at {csv_path}")
 
@@ -60,7 +39,6 @@ def load_manual_overrides(
         rel_date = row["release_date"] if "release_date" in row and pd.notna(row["release_date"]) else None
         source   = row.get("source", "manual")
 
-        # Check if title exists (case-insensitive)
         cur.execute(
             "SELECT app_id FROM game_requirements WHERE LOWER(title) = LOWER(?)",
             (title,)
@@ -68,10 +46,32 @@ def load_manual_overrides(
         result = cur.fetchone()
 
         if not result:
-            not_found.append(title)
+            from games_list import STEAM_GAMES
+            app_id_val = None
+            genre_val = None
+            for t, (aid, g) in STEAM_GAMES.items():
+                if t.lower() == title.lower():
+                    app_id_val = aid
+                    genre_val = g
+                    break
+
+            if app_id_val and min_ram is not None:
+                cur.execute(
+                    """INSERT OR IGNORE INTO game_requirements
+                       (app_id, title, genre, min_ram_gb, rec_ram_gb, release_date, fetched_at, raw_min_req)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (
+                        app_id_val, title, genre_val, min_ram, rec_ram,
+                        str(rel_date).strip() if rel_date else None,
+                        datetime.utcnow().isoformat(), "manual"
+                    )
+                )
+                log.info("Inserted new game:  %s", title)
+                updated += 1
+            else:
+                not_found.append(title)
             continue
 
-        # Build update dynamically — only update fields that have values
         fields = []
         values = []
 
@@ -108,8 +108,7 @@ def load_manual_overrides(
 
     if not_found:
         log.warning(
-            "These titles were not found in the database — "
-            "run pipeline.py first to fetch them:\n  %s",
+            "These titles were not found in the database:\n  %s",
             "\n  ".join(not_found)
         )
 
