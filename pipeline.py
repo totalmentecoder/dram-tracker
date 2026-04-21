@@ -420,9 +420,24 @@ def build_dashboard(conn: sqlite3.Connection) -> go.Figure:
     )
     if not games_df.empty:
         # Parse release dates — Steam uses "DD Mon, YYYY" or "Mon DD, YYYY"
-        games_df["release_dt"] = pd.to_datetime(
-            games_df["release_date"], errors="coerce", dayfirst=False
-        )
+        def parse_date(d):
+            if not d or str(d).strip() in ("", "Coming soon", "To be announced"):
+                return None
+            import re
+            for fmt in ("%d %b, %Y", "%d %b %Y", "%b %d, %Y", "%B %d, %Y", "%Y-%m-%d"):
+                try:
+                    from datetime import datetime
+                    return datetime.strptime(str(d).strip(), fmt)
+                except ValueError:
+                    continue
+            match = re.search(r"\b(20\d{2})\b", str(d))
+            if match:
+                from datetime import datetime
+                return datetime(int(match.group(1)), 1, 1)
+            return None
+
+        games_df["release_dt"] = games_df["release_date"].apply(parse_date)
+        
         games_df = games_df.dropna(subset=["release_dt", "min_ram_gb"])
         games_df = games_df.sort_values("release_dt")
 
