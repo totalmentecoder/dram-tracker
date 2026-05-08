@@ -1,9 +1,9 @@
-title,franchise,year,steam_app_id
-GTA III,GTA,2002,12100
-GTA Vice City,GTA,2003,12110
-GTA San Andreas,GTA,2004,12120
-GTA IV,GTA,2008,12210
-GTA V,GTA,2013,271590
+title,franchise,year,steam_app_id,min_ram_gb
+GTA III,GTA,2002,12100,0.064
+GTA Vice City,GTA,2003,12110,0.128
+GTA San Andreas,GTA,2004,12120,0.256
+GTA IV,GTA,2008,12210,1.5
+GTA V,GTA,2013,271590,4
 Assassin's Creed,Assassin's Creed,2008,15709
 Assassin's Creed II,Assassin's Creed,2010,33230
 Assassin's Creed Brotherhood,Assassin's Creed,2011,48190
@@ -21,18 +21,18 @@ Far Cry 3,Far Cry,2012,220240
 Far Cry 4,Far Cry,2014,298110
 Far Cry 5,Far Cry,2018,552520
 Far Cry 6,Far Cry,2021,2015760
-Call of Duty,Call of Duty,2003,2620
-Call of Duty 2,Call of Duty,2005,2640
-Call of Duty 4 Modern Warfare,Call of Duty,2007,7940
-Call of Duty Modern Warfare 2,Call of Duty,2009,10180
-Call of Duty Black Ops,Call of Duty,2010,42700
-Call of Duty Modern Warfare 3 2011,Call of Duty,2011,42680
-Call of Duty Black Ops II,Call of Duty,2012,202970
-Call of Duty Ghosts,Call of Duty,2013,209160
-Call of Duty Advanced Warfare,Call of Duty,2014,209650
-Call of Duty Black Ops III,Call of Duty,2015,311210
-Call of Duty WWII,Call of Duty,2017,476600
-Call of Duty Modern Warfare 2019,Call of Duty,2019,393080
+Call of Duty,Call of Duty,2003,2620,0.256
+Call of Duty 2,Call of Duty,2005,2640,0.512
+Call of Duty 4 Modern Warfare,Call of Duty,2007,7940,0.512
+Call of Duty Modern Warfare 2,Call of Duty,2009,10180,1
+Call of Duty Black Ops,Call of Duty,2010,42700,2
+Call of Duty Modern Warfare 3 2011,Call of Duty,2011,42680,2
+Call of Duty Black Ops II,Call of Duty,2012,202970,2
+Call of Duty Ghosts,Call of Duty,2013,209160,6
+Call of Duty Advanced Warfare,Call of Duty,2014,209650,6
+Call of Duty Black Ops III,Call of Duty,2015,311210,6
+Call of Duty WWII,Call of Duty,2017,476600,8
+Call of Duty Modern Warfare 2019,Call of Duty,2019,393080,8
 Call of Duty Vanguard,Call of Duty,2021,1085660
 FIFA 07,FIFA,2006,1901
 FIFA 11,FIFA,2010,47890
@@ -45,14 +45,14 @@ FIFA 19,FIFA,2018,1229572
 FIFA 20,FIFA,2019,1255690
 FIFA 21,FIFA,2020,1313860
 Halo Combat Evolved,Halo,2003,976730
-Crysis,Crysis,2007,17300
-The Witcher,Witcher,2007,20900
-Skyrim,Elder Scrolls,2011,72850
-The Witcher 2,Witcher,2011,20920
-The Witcher 3,Witcher,2015,292030
-Battlefield Bad Company 2,Battlefield,2010,24960
-Battlefield 3,Battlefield,2011,1238820
-Battlefield 4,Battlefield,2013,1238820
-Battlefield 1,Battlefield,2016,1238820
-Battlefield V,Battlefield,2018,1238820
+Crysis,Crysis,2007,17300,1
+The Witcher,Witcher,2007,20900,0.512
+Skyrim,Elder Scrolls,2011,72850,2
+The Witcher 2,Witcher,2011,20920,1.5
+The Witcher 3,Witcher,2015,292030,6
+Battlefield Bad Company 2,Battlefield,2010,24960,2
+Battlefield 3,Battlefield,2011,1238820,2
+Battlefield 4,Battlefield,2013,1238820,4
+Battlefield 1,Battlefield,2016,1238820,8
+Battlefield V,Battlefield,2018,1238820,8
 Battlefield 2042,Battlefield,2021,1517290
