@@ -177,6 +177,7 @@ cat("Author: Salvatore Caldara, Tilburg University 2025-2026\n\n")
 summary(m1)
 summary(m2)
 summary(m3)
+sink()
 
 cat("Results saved: did_results.txt\n")
 cat("\nDone. Check did_plot.png and did_results.txt in your dram-tracker folder.\n")

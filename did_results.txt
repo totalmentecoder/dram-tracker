@@ -11,49 +11,44 @@ Author: Salvatore Caldara, Tilburg University 2025-2026
 
 > summary(m1)
 OLS estimation, Dep. Var.: min_ram_gb
-Observations: 92
+Observations: 144
 Standard-errors: Heteroskedasticity-robust 
                  Estimate Std. Error       t value   Pr(>|t|)    
 (Intercept)  1.600000e+01 0.00000001  1.600000e+09  < 2.2e-16 ***
-pc_dummy    -8.413793e+00 0.35087126 -2.397972e+01  < 2.2e-16 ***
-post         7.110000e-15 0.00000001  7.110000e-07 0.99999943    
-did          4.060852e+00 1.08247729  3.751443e+00 0.00031447 ***
+pc_dummy    -9.074074e+00 0.23585463 -3.847316e+01  < 2.2e-16 ***
+post         5.330000e-15 0.00000001  5.330000e-07 1.0000e+00    
+did          4.518519e+00 1.00785341  4.483309e+00 1.5173e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-RMSE: 2.05605   Adj. R2: 0.758428
+RMSE: 1.78759   Adj. R2: 0.843741
 
 > summary(m2)
 OLS estimation, Dep. Var.: min_ram_gb
-Observations: 92
-Fixed-effects: year: 7
+Observations: 144
+Fixed-effects: year: 10
 Standard-errors: Heteroskedasticity-robust 
          Estimate Std. Error   t value  Pr(>|t|)    
-pc_dummy -8.41379   0.349101 -24.10133 < 2.2e-16 ***
-did       4.06085   1.034003   3.92731 0.0001768 ***
+pc_dummy -9.07407   0.236098 -38.43356 < 2.2e-16 ***
+did       4.51852   0.982830   4.59746  9.89e-06 ***
 ... 1 variable was removed because of collinearity (post)
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-RMSE: 1.92086     Adj. R2: 0.77645 
-                Within R2: 0.777699
+RMSE: 1.70647     Adj. R2: 0.848972
+                Within R2: 0.851787
 
 > summary(m3)
 OLS estimation, Dep. Var.: min_ram_gb
-Observations: 92
-Fixed-effects: year: 7
+Observations: 138
+Fixed-effects: year: 10
 Standard-errors: Heteroskedasticity-robust 
             Estimate Std. Error   t value   Pr(>|t|)    
-pc_dummy   -7.822426   0.451280 -17.33388  < 2.2e-16 ***
-did         3.685657   1.054189   3.49620 0.00076453 ***
-rec_ram_gb  0.204162   0.110941   1.84027 0.06934624 .  
+pc_dummy   -7.998813   0.455355 -17.56611  < 2.2e-16 ***
+did         3.713560   1.046700   3.54787 0.00054773 ***
+rec_ram_gb  0.221156   0.084349   2.62192 0.00982978 ** 
 ... 1 variable was removed because of collinearity (post)
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-RMSE: 1.84576     Adj. R2: 0.791073
-                Within R2: 0.794743
+RMSE: 1.62623     Adj. R2: 0.85894 
+                Within R2: 0.864506
 
-> cat("Results saved: did_results.txt\n")
-Results saved: did_results.txt
-
-> cat("\nDone. Check did_plot.png and did_results.txt in your dram-tracker folder.\n")
-
-Done. Check did_plot.png and did_results.txt in your dram-tracker folder.
+> sink()

@@ -251,3 +251,12 @@ sink()
 cat("\nAll results saved to analysis/its_results.txt\n")
 cat("Pre-trend plot saved to analysis/its_pretrend_plot.png\n")
 cat("\nDone.\n")
+
+# ── Sensitivity Check: Including 2022 ────────────────────────────────────────
+df_sens <- read_csv("its_dataset_full.csv")
+
+m_sens <- feols(min_ram_gb ~ time_index + post + time_since_break | genre,
+                data = df_sens, vcov = "HC1")
+
+cat("=== Sensitivity Check: ITS including 2022 as pre-shock ===\n")
+summary(m_sens)
