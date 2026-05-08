@@ -260,3 +260,15 @@ m_sens <- feols(min_ram_gb ~ time_index + post + time_since_break | genre,
 
 cat("=== Sensitivity Check: ITS including 2022 as pre-shock ===\n")
 summary(m_sens)
+
+df %>% filter(post == 0) %>% summarise(mean(min_ram_gb))
+df %>% filter(post == 1) %>% summarise(mean(min_ram_gb))
+
+ggplot(df_chow, aes(x = time_index, y = min_ram_gb, color = factor(break_dummy))) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_manual(values = c("0" = "steelblue", "1" = "coral"),
+                     labels = c("Pre-shock", "Post-shock")) +
+  labs(title = "Chow Test: Structural Break in PC RAM Requirements",
+       x = "Time Index", y = "Minimum RAM (GB)", color = "Period") +
+  theme_minimal()
