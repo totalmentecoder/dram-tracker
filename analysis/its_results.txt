@@ -1,0 +1,126 @@
+
+> cat("ITS Analysis Results\n")
+ITS Analysis Results
+
+> cat("Thesis: Hardware Cannibalization and Software Strategy\n")
+Thesis: Hardware Cannibalization and Software Strategy
+
+> cat("Author: Salvatore Caldara, Tilburg University 2025-2026\n")
+Author: Salvatore Caldara, Tilburg University 2025-2026
+
+> cat("=======================================================\n\n")
+=======================================================
+
+
+> cat("=== H1: ITS Regression Results ===\n")
+=== H1: ITS Regression Results ===
+
+> cat("Model 1 - Basic ITS:\n")
+Model 1 - Basic ITS:
+
+> summary(m1)
+OLS estimation, Dep. Var.: min_ram_gb
+Observations: 72
+Standard-errors: Heteroskedasticity-robust 
+                 Estimate Std. Error   t value  Pr(>|t|)    
+(Intercept)      6.377224   0.367980 17.330353 < 2.2e-16 ***
+time_index       0.184037   0.108638  1.694033  0.094835 .  
+post             0.001186   2.219101  0.000535  0.999575    
+time_since_break 2.082630   1.233559  1.688309  0.095933 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 2.35742   Adj. R2: 0.432183
+
+> cat("\nModel 2 - ITS + Genre FE:\n")
+
+Model 2 - ITS + Genre FE:
+
+> summary(m2)
+OLS estimation, Dep. Var.: min_ram_gb
+Observations: 72
+Fixed-effects: genre: 4
+Standard-errors: Heteroskedasticity-robust 
+                 Estimate Std. Error  t value Pr(>|t|)    
+time_index       0.267676   0.104965 2.550149 0.013134 *  
+post             0.022077   2.025777 0.010898 0.991338    
+time_since_break 1.602918   1.212141 1.322386 0.190674    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 2.15606     Adj. R2: 0.503117
+                Within R2: 0.451964
+
+> cat("\nModel 3 - ITS + Genre FE + Rec RAM:\n")
+
+Model 3 - ITS + Genre FE + Rec RAM:
+
+> summary(m3)
+OLS estimation, Dep. Var.: min_ram_gb
+Observations: 66
+Fixed-effects: genre: 4
+Standard-errors: Heteroskedasticity-robust 
+                 Estimate Std. Error  t value Pr(>|t|) 
+time_index       0.116357   0.149602 0.777776  0.43986 
+post             0.040375   1.960264 0.020597  0.98364 
+time_since_break 1.777546   1.167935 1.521957  0.13345 
+rec_ram_gb       0.158901   0.096270 1.650570  0.10423 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 2.1642     Adj. R2: 0.515125
+               Within R2: 0.482838
+
+> cat("\n=== Genre Subsamples ===\n")
+
+=== Genre Subsamples ===
+
+> cat("Sports:\n")
+Sports:
+
+> summary(m_sports)
+OLS estimation, Dep. Var.: min_ram_gb
+Observations: 26
+Standard-errors: Heteroskedasticity-robust 
+                  Estimate Std. Error  t value   Pr(>|t|)    
+(Intercept)       5.353774   0.813832  6.57847 0.00000129 ***
+time_index        0.278302   0.211945  1.31308 0.20268663    
+post             -3.301887   2.800979 -1.17883 0.25105756    
+time_since_break  3.055031   2.449037  1.24744 0.22535166    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 2.08442   Adj. R2: 0.2442
+
+> cat("\nGraphically Intensive:\n")
+
+Graphically Intensive:
+
+> summary(m_intensive)
+OLS estimation, Dep. Var.: min_ram_gb
+Observations: 34
+Standard-errors: Heteroskedasticity-robust 
+                 Estimate Std. Error   t value   Pr(>|t|)    
+(Intercept)      6.445510   0.444460 14.501886 4.2873e-15 ***
+time_index       0.276373   0.186911  1.478636 1.4966e-01    
+post             2.286545   3.241605  0.705374 4.8602e-01    
+time_since_break 1.056960   1.546740  0.683347 4.9963e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 2.45143   Adj. R2: 0.541204
+
+> cat("\n=== H3: Correlation Analysis ===\n")
+
+=== H3: Correlation Analysis ===
+
+> print(pearson_h3)
+
+	Pearson's product-moment correlation
+
+data:  h3_df$dc_revenue and h3_df$ppi_value
+t = -1.9583, df = 9, p-value = 0.08186
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.86338808  0.07923367
+sample estimates:
+       cor 
+-0.5466225 
+
+
+> sink()

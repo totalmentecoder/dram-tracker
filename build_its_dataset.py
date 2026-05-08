@@ -81,12 +81,14 @@ def build_its_dataset(conn: sqlite3.Connection) -> pd.DataFrame:
 
     # Filter to study window
     games = games[(games["year"] >= BASE_YEAR) & (games["year"] <= 2026)]
+    games_full = games.copy()  # Keep full dataset for sensitivity check
+    games = games[games["year"] != 2022]  # Exclude transition year for primary estimation
     log.info("Games within study window (%d–2026): %d", BASE_YEAR, len(games))
 
     # ── ITS variables ─────────────────────────────────────────────────────────
 
     # post: treatment indicator — 1 if released after break point
-    games["post"] = (games["year"] > BREAK_YEAR).astype(int)
+    games["post"] = (games["year"] >= 2023).astype(int)
 
     # time_index: continuous time since study start (for pre-shock slope)
     games["time_index"] = games["year"] - BASE_YEAR

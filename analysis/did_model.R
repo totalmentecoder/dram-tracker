@@ -26,6 +26,7 @@
 library(fixest)
 library(tidyverse)
 library(modelsummary)
+install.packages(c("DBI", "RSQLite"))
 
 # ── 1. Load Data ─────────────────────────────────────────────────────────────
 
