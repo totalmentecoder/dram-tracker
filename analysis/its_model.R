@@ -272,3 +272,74 @@ ggplot(df_chow, aes(x = time_index, y = min_ram_gb, color = factor(break_dummy))
   labs(title = "Chow Test: Structural Break in PC RAM Requirements",
        x = "Time Index", y = "Minimum RAM (GB)", color = "Period") +
   theme_minimal()
+
+# ── H2: Upscaling Adoption Logistic Regression ───────────────────────────────
+cat("\n=== H2: AI Upscaling Adoption ===\n")
+
+library(DBI)
+library(RSQLite)
+
+conn <- dbConnect(RSQLite::SQLite(), "dram_tracker.db")
+
+upscaling <- dbGetQuery(conn, "
+    SELECT 
+        g.title, g.genre, g.release_date, g.min_ram_gb,
+        u.has_upscaling
+    FROM game_requirements g
+    JOIN upscaling_support u ON g.app_id = u.app_id
+    WHERE g.min_ram_gb IS NOT NULL
+    AND u.source != 'pending'
+")
+
+dbDisconnect(conn)
+
+# Parse year and assign period
+upscaling$year <- as.integer(substr(upscaling$release_date, 
+                                    nchar(upscaling$release_date)-3, 
+                                    nchar(upscaling$release_date)))
+upscaling$year <- as.integer(gsub(".*([0-9]{4}).*", "\\1", upscaling$release_date))
+upscaling <- upscaling[!is.na(upscaling$year) & upscaling$year >= 2015 & upscaling$year <= 2026,]
+upscaling <- upscaling[upscaling$year != 2022,]
+upscaling$post <- as.integer(upscaling$year >= 2023)
+upscaling$time_index <- upscaling$year - 2015
+
+# Descriptive
+cat("Upscaling adoption by period:\n")
+print(tapply(upscaling$has_upscaling, 
+             ifelse(upscaling$post==1, "ai_intensive", "pre_ai"), 
+             mean))
+
+# H2: Logistic regression
+h2_m1 <- glm(has_upscaling ~ post, 
+             data = upscaling, family = binomial)
+
+h2_m2 <- glm(has_upscaling ~ post + genre, 
+             data = upscaling, family = binomial)
+
+h2_m3 <- glm(has_upscaling ~ time_index + post, 
+             data = upscaling, family = binomial)
+
+cat("\nModel 1 - Basic (post only):\n")
+summary(h2_m1)
+
+cat("\nModel 2 - With genre controls:\n")
+summary(h2_m2)
+
+cat("\nModel 3 - With time trend:\n")
+summary(h2_m3)
+
+cat("\nOdds ratios Model 1:\n")
+print(exp(coef(h2_m1)))
+
+# Save
+sink("analysis/h2_results.txt")
+cat("H2: AI Upscaling Adoption Results\n\n")
+cat("Adoption rates:\n")
+print(tapply(upscaling$has_upscaling, 
+             ifelse(upscaling$post==1, "ai_intensive", "pre_ai"), mean))
+cat("\nModel 1:\n"); summary(h2_m1)
+cat("\nModel 2:\n"); summary(h2_m2)
+cat("\nModel 3:\n"); summary(h2_m3)
+cat("\nOdds ratios:\n"); print(exp(coef(h2_m1)))
+sink()
+cat("H2 results saved to analysis/h2_results.txt\n")

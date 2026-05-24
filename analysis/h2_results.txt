@@ -1,0 +1,95 @@
+
+> cat("H2: AI Upscaling Adoption Results\n\n")
+H2: AI Upscaling Adoption Results
+
+
+> cat("Adoption rates:\n")
+Adoption rates:
+
+> print(tapply(upscaling$has_upscaling, 
++              ifelse(upscaling$post==1, "ai_intensive", "pre_ai"), mean))
+ai_intensive       pre_ai 
+   0.7777778    0.2592593 
+
+> cat("\nModel 1:\n"); summary(h2_m1)
+
+Model 1:
+
+Call:
+glm(formula = has_upscaling ~ post, family = binomial, data = upscaling)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -1.0498     0.3105  -3.381 0.000723 ***
+post          2.3026     0.6464   3.562 0.000368 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 96.228  on 71  degrees of freedom
+Residual deviance: 80.876  on 70  degrees of freedom
+AIC: 84.876
+
+Number of Fisher Scoring iterations: 4
+
+
+> cat("\nModel 2:\n"); summary(h2_m2)
+
+Model 2:
+
+Call:
+glm(formula = has_upscaling ~ post + genre, family = binomial, 
+    data = upscaling)
+
+Coefficients:
+                Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      -0.7166     0.4951  -1.447 0.147780    
+post              2.9544     0.8550   3.456 0.000549 ***
+genreAction-RPG   0.2900     0.8949   0.324 0.745879    
+genreFPS          0.5554     0.7751   0.717 0.473637    
+genreSports      -2.2340     0.9053  -2.468 0.013598 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 96.228  on 71  degrees of freedom
+Residual deviance: 67.854  on 67  degrees of freedom
+AIC: 77.854
+
+Number of Fisher Scoring iterations: 5
+
+
+> cat("\nModel 3:\n"); summary(h2_m3)
+
+Model 3:
+
+Call:
+glm(formula = has_upscaling ~ time_index + post, family = binomial, 
+    data = upscaling)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -2.58025    0.73925  -3.490 0.000482 ***
+time_index   0.44161    0.16815   2.626 0.008630 ** 
+post         0.03566    1.02050   0.035 0.972125    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 96.228  on 71  degrees of freedom
+Residual deviance: 72.601  on 69  degrees of freedom
+AIC: 78.601
+
+Number of Fisher Scoring iterations: 4
+
+
+> cat("\nOdds ratios:\n"); print(exp(coef(h2_m1)))
+
+Odds ratios:
+(Intercept)        post 
+       0.35       10.00 
+
+> sink()
