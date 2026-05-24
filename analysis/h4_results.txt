@@ -1,0 +1,138 @@
+H4: DRAM Price Proxy vs Upscaling Adoption
+
+NOTE: Semiconductor PPI used as proxy — see limitations
+
+
+Call:
+glm(formula = has_upscaling ~ ppi_value, family = binomial, data = h4_df)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept) -2.49908   12.53154  -0.199    0.842
+ppi_value    0.09703    0.40393   0.240    0.810
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 52.925  on 39  degrees of freedom
+Residual deviance: 52.867  on 38  degrees of freedom
+AIC: 56.867
+
+Number of Fisher Scoring iterations: 4
+
+
+Call:
+glm(formula = has_upscaling ~ ppi_value + genre, family = binomial, 
+    data = h4_df)
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)  
+(Intercept)       -4.3971    16.5115  -0.266   0.7900  
+ppi_value          0.1793     0.5285   0.339   0.7344  
+genreAction-RPG   17.4241  2657.3640   0.007   0.9948  
+genreFPS           0.5111     1.3228   0.386   0.6992  
+genreSports       -2.1778     0.8856  -2.459   0.0139 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 52.925  on 39  degrees of freedom
+Residual deviance: 36.733  on 35  degrees of freedom
+AIC: 46.733
+
+Number of Fisher Scoring iterations: 17
+
+
+Call:
+glm(formula = has_upscaling ~ ppi_value + time_index, family = binomial, 
+    data = h4_df)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)  
+(Intercept)  -9.7439    13.3986  -0.727    0.467  
+ppi_value     0.2559     0.4209   0.608    0.543  
+time_index    0.3467     0.2000   1.734    0.083 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 52.925  on 39  degrees of freedom
+Residual deviance: 49.615  on 37  degrees of freedom
+AIC: 55.615
+
+Number of Fisher Scoring iterations: 4
+
+
+Odds ratios:
+(Intercept)   ppi_value 
+ 0.08216075  1.10188869 
+
+
+=== H4 Alternative: NVIDIA DC Revenue Proxy ===
+Exploratory reduced-form test
+
+
+Call:
+glm(formula = has_upscaling ~ dc_revenue, family = binomial, 
+    data = h4b_df)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept) 0.016885   0.442139   0.038     0.97
+dc_revenue  0.012971   0.008561   1.515     0.13
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 52.925  on 39  degrees of freedom
+Residual deviance: 50.254  on 38  degrees of freedom
+AIC: 54.254
+
+Number of Fisher Scoring iterations: 4
+
+
+Call:
+glm(formula = has_upscaling ~ dc_revenue + genre, family = binomial, 
+    data = h4b_df)
+
+Coefficients:
+                  Estimate Std. Error z value Pr(>|z|)  
+(Intercept)        0.69304    0.73659   0.941   0.3468  
+dc_revenue         0.01497    0.01102   1.359   0.1742  
+genreAction-RPG   16.83733 2538.34370   0.007   0.9947  
+genreFPS           0.69971    1.29769   0.539   0.5898  
+genreSports       -2.34723    0.93999  -2.497   0.0125 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 52.925  on 39  degrees of freedom
+Residual deviance: 34.804  on 35  degrees of freedom
+AIC: 44.804
+
+Number of Fisher Scoring iterations: 17
+
+
+Call:
+glm(formula = has_upscaling ~ dc_revenue + time_index, family = binomial, 
+    data = h4b_df)
+
+Coefficients:
+             Estimate Std. Error z value Pr(>|z|)
+(Intercept) -1.329602   2.550160  -0.521    0.602
+dc_revenue   0.002964   0.020308   0.146    0.884
+time_index   0.258427   0.482205   0.536    0.592
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 52.925  on 39  degrees of freedom
+Residual deviance: 49.963  on 37  degrees of freedom
+AIC: 55.963
+
+Number of Fisher Scoring iterations: 4
+
+
+Odds ratios:
+(Intercept)  dc_revenue 
+   1.017028    1.013056 
