@@ -135,14 +135,23 @@ Three nested specifications are estimated within the R analysis pipeline (`analy
 ## Roadmap
 
 [x] FRED DRAM price proxy pipeline
+
 [x] NVIDIA revenue ingestion (yfinance)
+
 [x] Steam Store API game requirements parser
+
 [x] Manual override pipeline for Steam API gaps (13 PCGamingWiki-verified titles)
+
 [x] IGDB integration for console counterparts (collector + schema complete)
+
 [x] ITS & DiD dataset builders
+
 [x] ITS & DiD regressions in R (fixest package) — completed and verified
+
 [x] Historical pretrend chart (PCGamingWiki, 2000–2022)
+
 [ ] Automated weekly refresh (GitHub Actions)
+
 [ ] Power BI .pbix export integration
 
 ---
