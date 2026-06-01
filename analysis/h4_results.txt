@@ -1,7 +1,13 @@
+
+> cat("H4: DRAM Price Proxy vs Upscaling Adoption\n\n")
 H4: DRAM Price Proxy vs Upscaling Adoption
 
+
+> cat("NOTE: Semiconductor PPI used as proxy — see limitations\n\n")
 NOTE: Semiconductor PPI used as proxy — see limitations
 
+
+> summary(h4_m1)
 
 Call:
 glm(formula = has_upscaling ~ ppi_value, family = binomial, data = h4_df)
@@ -19,6 +25,8 @@ AIC: 56.867
 
 Number of Fisher Scoring iterations: 4
 
+
+> summary(h4_m2)
 
 Call:
 glm(formula = has_upscaling ~ ppi_value + genre, family = binomial, 
@@ -43,6 +51,8 @@ AIC: 46.733
 Number of Fisher Scoring iterations: 17
 
 
+> summary(h4_m3)
+
 Call:
 glm(formula = has_upscaling ~ ppi_value + time_index, family = binomial, 
     data = h4_df)
@@ -64,14 +74,26 @@ AIC: 55.615
 Number of Fisher Scoring iterations: 4
 
 
+> cat("\nOdds ratios:\n")
+
 Odds ratios:
+
+> print(exp(coef(h4_m1)))
 (Intercept)   ppi_value 
  0.08216075  1.10188869 
 
+> sink()
+
+> cat("\n\n=== H4 Alternative: NVIDIA DC Revenue Proxy ===\n")
+
 
 === H4 Alternative: NVIDIA DC Revenue Proxy ===
+
+> cat("Exploratory reduced-form test\n\n")
 Exploratory reduced-form test
 
+
+> summary(h4b_m1)
 
 Call:
 glm(formula = has_upscaling ~ dc_revenue, family = binomial, 
@@ -90,6 +112,8 @@ AIC: 54.254
 
 Number of Fisher Scoring iterations: 4
 
+
+> summary(h4b_m2)
 
 Call:
 glm(formula = has_upscaling ~ dc_revenue + genre, family = binomial, 
@@ -114,6 +138,8 @@ AIC: 44.804
 Number of Fisher Scoring iterations: 17
 
 
+> summary(h4b_m3)
+
 Call:
 glm(formula = has_upscaling ~ dc_revenue + time_index, family = binomial, 
     data = h4b_df)
@@ -133,6 +159,12 @@ AIC: 55.963
 Number of Fisher Scoring iterations: 4
 
 
+> cat("\nOdds ratios:\n")
+
 Odds ratios:
+
+> print(exp(coef(h4b_m1)))
 (Intercept)  dc_revenue 
    1.017028    1.013056 
+
+> sink()

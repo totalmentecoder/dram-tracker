@@ -469,3 +469,44 @@ cat("\nOdds ratios:\n")
 print(exp(coef(h4b_m1)))
 sink()
 cat("H4 alternative results appended to analysis/h4_results.txt\n")
+
+# ── H2 Bar Chart ──────────────────────────────────────────────────────────────
+library (tidyverse)
+
+adoption_df <- data.frame(
+  period = c("Pre-Shock\n(2015–2021)", "AI-Intensive\n(2023–2026)"),
+  adoption = c(25.9, 77.8)
+)
+
+ggplot(adoption_df, aes(x = period, y = adoption, fill = period)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  geom_text(aes(label = paste0(adoption, "%")), 
+            vjust = -0.5, size = 5, fontface = "bold") +
+  scale_fill_manual(values = c("#00b4d8", "#f4a261")) +
+  scale_y_continuous(limits = c(0, 95), 
+                     labels = function(x) paste0(x, "%")) +
+  labs(
+    title = "AI Upscaling Adoption Rate by Period",
+    subtitle = "Share of AAA PC games supporting DLSS, FSR, or XeSS",
+    x = NULL,
+    y = "Adoption Rate (%)",
+    caption = "Source: Author's own compilation. N = 72 games."
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "gray40")
+  )
+
+ggsave("analysis/h2_adoption_chart.png", width = 6, height = 5, dpi = 300)
+cat("H2 bar chart saved to analysis/h2_adoption_chart.png\n")
+
+df %>%
+  group_by(genre, period) %>%
+  summarise(
+    n = n(),
+    mean_ram = round(mean(min_ram_gb), 2),
+    .groups = "drop"
+  ) %>%
+  arrange(genre, period)
