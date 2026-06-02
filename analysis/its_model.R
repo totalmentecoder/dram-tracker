@@ -520,3 +520,12 @@ cat("Pre adoption:", mean(upscaling$has_upscaling[upscaling$year < 2022]), "\n")
 cat("N:", nrow(upscaling), "\n")
 
 getwd()
+
+df_chow <- df %>% mutate(break_dummy = as.integer(year >= 2023))
+m_restricted   <- lm(min_ram_gb ~ time_index, data = df_chow)
+m_unrestricted <- lm(min_ram_gb ~ time_index * break_dummy, data = df_chow)
+anova(m_restricted, m_unrestricted)
+
+summary(m1)
+summary(m2)
+summary(m3)
