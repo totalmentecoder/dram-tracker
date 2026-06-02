@@ -482,7 +482,7 @@ def build_dashboard(conn: sqlite3.Connection) -> go.Figure:
         template="plotly_dark",
         paper_bgcolor="#0f1117",
         plot_bgcolor="#0f1117",
-        legend=dict(orientation="h", yanchor="bottom", y=1.01, xanchor="right", x=1),
+        legend=dict(orientation="h", yanchor="top", y=-0.08, xanchor="center", x=0.5, font=dict(size=13)),
         margin=dict(l=60, r=40, t=80, b=40),
     )
 
@@ -534,7 +534,82 @@ def run_pipeline(
 
     conn.close()
     log.info("Pipeline complete.")
+    
+def build_dashboard_nogames(conn: sqlite3.Connection) -> go.Figure:
+    fig = make_subplots(
+        rows=2, cols=1,
+        subplot_titles=(
+            "Semiconductor Producer Price Index (FRED PCU334413334413)",
+            "NVIDIA Data Center vs Gaming Revenue (USD bn)",
+        ),
+        vertical_spacing=0.15,
+    )
+
+    ppi_df = pd.read_sql(
+        "SELECT date, value FROM dram_prices WHERE series_name='semiconductor_ppi' ORDER BY date",
+        conn,
+    )
+    if not ppi_df.empty:
+        ppi_df["date"] = pd.to_datetime(ppi_df["date"])
+        fig.add_trace(
+            go.Scatter(x=ppi_df["date"], y=ppi_df["value"],
+                      mode="lines", name="Semiconductor PPI",
+                      line=dict(color="#00b4d8", width=2)),
+            row=1, col=1,
+        )
+        fig.add_vline(x="2022-01-01", line_dash="dash",
+                     line_color="rgba(255,100,100,0.6)")
+
+    seg_df = pd.read_sql(
+        """SELECT period, segment, revenue_usd
+           FROM nvidia_financials
+           WHERE segment IN ('data_center', 'gaming')
+           ORDER BY period""",
+        conn,
+    )
+    if not seg_df.empty:
+        seg_df["period"] = pd.to_datetime(seg_df["period"])
+        seg_df["revenue_bn"] = seg_df["revenue_usd"] / 1e9
+        dc   = seg_df[seg_df["segment"] == "data_center"]
+        game = seg_df[seg_df["segment"] == "gaming"]
+        fig.add_trace(
+            go.Scatter(x=dc["period"], y=dc["revenue_bn"],
+                      mode="lines", name="Data Center & AI",
+                      line=dict(color="#76b900", width=2.5)),
+            row=2, col=1,
+        )
+        fig.add_trace(
+            go.Scatter(x=game["period"], y=game["revenue_bn"],
+                      mode="lines", name="Gaming",
+                      line=dict(color="#00b4d8", width=2.5)),
+            row=2, col=1,
+        )
+        fig.add_vline(x="2022-01-01", line_dash="dash",
+                     line_color="rgba(255,100,100,0.7)",
+                     row=2, col=1)
+
+    fig.update_layout(
+        title=dict(text="AI Infrastructure Demand & DRAM Cost Proxy",
+                  font=dict(size=20, family="Georgia, serif")),
+        height=700,
+        template="plotly_dark",
+        paper_bgcolor="#0f1117",
+        plot_bgcolor="#0f1117",
+        legend=dict(
+            orientation="h",
+            yanchor="top",
+            y=-0.08,
+            xanchor="center",
+            x=0.5,
+            font=dict(size=13),
+        ),
+        margin=dict(l=60, r=40, t=80, b=40),
+    )
+    fig.update_xaxes(showgrid=True, gridcolor="rgba(255,255,255,0.07)")
+    fig.update_yaxes(showgrid=True, gridcolor="rgba(255,255,255,0.07)")
+    return fig
 
 
 if __name__ == "__main__":
     run_pipeline()
+    
