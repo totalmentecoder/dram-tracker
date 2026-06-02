@@ -1,14 +1,11 @@
 """
 games_list.py
 =============
-Single source of truth for all game titles used across pipeline.py
-and igdb_collector.py. Import from here to keep both files in sync.
-
-Each entry: "Title": steam_app_id
-Steam App IDs verified manually via store.steampowered.com
+Single source of truth for all game titles.
+Format: "Title": (steam_app_id, genre)
+Genres: Action-Adventure, Action-RPG, FPS, Sports
 """
 
-# Format: "Title": (steam_app_id, genre)
 STEAM_GAMES = {
     # ── 2015 ──────────────────────────────────────────────────────────────────
     "The Witcher 3":                   (292030,  "Action-RPG"),
@@ -42,7 +39,7 @@ STEAM_GAMES = {
     "F1 2017":                         (515220,  "Sports"),
     "Call of Duty WWII":               (476600,  "FPS"),
     "Wolfenstein II":                  (612880,  "FPS"),
-    "Need for Speed Payback":          (621490,  "Sports"),
+    "Need for Speed Payback":          (621490,  "Action-Adventure"),
 
     # ── 2018 ──────────────────────────────────────────────────────────────────
     "Assassin's Creed Odyssey":        (812140,  "Action-Adventure"),
@@ -59,6 +56,14 @@ STEAM_GAMES = {
     "Death Stranding":                 (1190460, "Action-Adventure"),
     "Control":                         (870780,  "Action-Adventure"),
     "Assetto Corsa Competizione":      (805550,  "Sports"),
+    "Metro Exodus":                    (412020,  "FPS"),
+    "Sekiro Shadows Die Twice":        (814380,  "Action-Adventure"),
+    "Devil May Cry 5":                 (601150,  "Action-Adventure"),
+    "The Outer Worlds":                (578650,  "Action-RPG"),
+    "Borderlands 3":                   (397540,  "FPS"),
+    "Tom Clancy's Division 2":         (365590,  "Action-Adventure"),
+    "FIFA 20":                         (1255690, "Sports"),
+    "F1 2019":                         (928600,  "Sports"),
 
     # ── 2020 ──────────────────────────────────────────────────────────────────
     "Resident Evil 3":                 (952060,  "Action-Adventure"),
@@ -68,6 +73,10 @@ STEAM_GAMES = {
     "NBA 2K21":                        (1320010, "Sports"),
     "F1 2020":                         (1080110, "Sports"),
     "Mafia Definitive Edition":        (1030840, "Action-Adventure"),
+    "Doom Eternal":                    (782330,  "FPS"),
+    "Immortals Fenyx Rising":          (1222680, "Action-Adventure"),
+    "Marvel's Avengers":               (882010,  "Action-Adventure"),
+    "Godfall":                         (928940,  "Action-RPG"),
 
     # ── 2021 ──────────────────────────────────────────────────────────────────
     "Resident Evil Village":           (1196590, "Action-Adventure"),
@@ -79,6 +88,12 @@ STEAM_GAMES = {
     "Halo Infinite":                   (1240440, "FPS"),
     "Battlefield 2042":                (1517290, "FPS"),
     "Call of Duty Vanguard":           (1085660, "FPS"),
+    "Hitman 3":                        (1659040, "Action-Adventure"),
+    "Deathloop":                       (1252330, "FPS"),
+    "Days Gone":                       (1259420, "Action-Adventure"),
+    "Outriders":                       (680420,  "Action-Adventure"),
+    "Marvel's Guardians of the Galaxy":(1088850, "Action-Adventure"),
+    "Back 4 Blood":                    (924970,  "FPS"),
 
     # ── 2022 ──────────────────────────────────────────────────────────────────
     "Dying Light 2":                   (534380,  "Action-Adventure"),
@@ -103,6 +118,17 @@ STEAM_GAMES = {
     "NBA 2K24":                        (2338770, "Sports"),
     "F1 23":                           (2108330, "Sports"),
     "Call of Duty MW3 2023":           (2519060, "FPS"),
+    "Dead Space Remake":               (1693980, "Action-Adventure"),
+    "Dead Island 2":                   (1318010, "Action-Adventure"),
+    "Star Wars Jedi Survivor":         (1775010, "Action-Adventure"),
+    "Avatar Frontiers of Pandora":     (1898069, "Action-Adventure"),
+    "Starfield":                       (1716740, "Action-RPG"),
+    "Remnant 2":                       (1282100, "Action-RPG"),
+    "Lies of P":                       (1627720, "Action-RPG"),
+    "Lords of the Fallen":             (1501750, "Action-RPG"),
+    "Atomic Heart":                    (668580,  "FPS"),
+    "Forspoken":                       (1952091, "Action-RPG"),
+    "EA Sports PGA Tour":              (1796010, "Sports"),
 
     # ── 2024 ──────────────────────────────────────────────────────────────────
     "Star Wars Outlaws":               (2803270, "Action-Adventure"),
@@ -110,6 +136,16 @@ STEAM_GAMES = {
     "EA FC 25":                        (2731540, "Sports"),
     "NBA 2K25":                        (2767030, "Sports"),
     "F1 24":                           (2488060, "Sports"),
+    "Indiana Jones Great Circle":      (2677660, "Action-Adventure"),
+    "Warhammer 40K Space Marine 2":    (2183900, "Action-Adventure"),
+    "Silent Hill 2 Remake":            (2138710, "Action-Adventure"),
+    "Ghost of Tsushima":               (2215430, "Action-Adventure"),
+    "Dragon's Dogma 2":                (2054970, "Action-RPG"),
+    "Dragon Age Veilguard":            (1845910, "Action-RPG"),
+    "Metaphor ReFantazio":             (2679460, "Action-RPG"),
+    "Like a Dragon Infinite Wealth":   (2072450, "Action-RPG"),
+    "Stalker 2":                       (1643320, "FPS"),
+    "WWE 2K24":                        (2285950, "Sports"),
 
     # ── 2025 ──────────────────────────────────────────────────────────────────
     "Marvel's Spider-Man 2":           (2119490, "Action-Adventure"),
@@ -117,4 +153,9 @@ STEAM_GAMES = {
     "Monster Hunter Wilds":            (2246340, "Action-RPG"),
     "FF7 Rebirth":                     (2909400, "Action-RPG"),
     "The Last of Us Part I":           (1888930, "Action-Adventure"),
+    "Clair Obscur Expedition 33":      (2486920, "Action-RPG"),
+    "Kingdom Come Deliverance 2":      (1702540, "Action-RPG"),
+    "Doom The Dark Ages":              (2413590, "FPS"),
+    "EA Sports FC 26":                 (3405690, "Sports"),
+    "NBA 2K26":                        (3472040, "Sports"),
 }

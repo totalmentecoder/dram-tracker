@@ -475,7 +475,10 @@ library (tidyverse)
 
 adoption_df <- data.frame(
   period = c("Pre-Shock\n(2015–2021)", "AI-Intensive\n(2023–2026)"),
-  adoption = c(25.9, 77.8)
+  adoption = c(
+    round(mean(upscaling$has_upscaling[upscaling$year < 2022]) * 100, 1),
+    round(mean(upscaling$has_upscaling[upscaling$year >= 2023]) * 100, 1)
+  )
 )
 
 ggplot(adoption_df, aes(x = period, y = adoption, fill = period)) +
@@ -490,7 +493,7 @@ ggplot(adoption_df, aes(x = period, y = adoption, fill = period)) +
     subtitle = "Share of AAA PC games supporting DLSS, FSR, or XeSS",
     x = NULL,
     y = "Adoption Rate (%)",
-    caption = "Source: Author's own compilation. N = 72 games."
+    caption = "Source: Author's own compilation. N = 113 games."
   ) +
   theme_minimal(base_size = 14) +
   theme(
@@ -509,4 +512,11 @@ df %>%
     mean_ram = round(mean(min_ram_gb), 2),
     .groups = "drop"
   ) %>%
-  arrange(genre, period)
+  arrange
+
+
+cat("Post adoption:", mean(upscaling$has_upscaling[upscaling$year >= 2023]), "\n")
+cat("Pre adoption:", mean(upscaling$has_upscaling[upscaling$year < 2022]), "\n")
+cat("N:", nrow(upscaling), "\n")
+
+getwd()

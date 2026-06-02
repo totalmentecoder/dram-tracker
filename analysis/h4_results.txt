@@ -14,14 +14,14 @@ glm(formula = has_upscaling ~ ppi_value, family = binomial, data = h4_df)
 
 Coefficients:
             Estimate Std. Error z value Pr(>|z|)
-(Intercept) -2.49908   12.53154  -0.199    0.842
-ppi_value    0.09703    0.40393   0.240    0.810
+(Intercept)  1.36139    9.34506   0.146    0.884
+ppi_value   -0.02868    0.30058  -0.095    0.924
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 52.925  on 39  degrees of freedom
-Residual deviance: 52.867  on 38  degrees of freedom
-AIC: 56.867
+    Null deviance: 103.94  on 77  degrees of freedom
+Residual deviance: 103.93  on 76  degrees of freedom
+AIC: 107.93
 
 Number of Fisher Scoring iterations: 4
 
@@ -33,22 +33,22 @@ glm(formula = has_upscaling ~ ppi_value + genre, family = binomial,
     data = h4_df)
 
 Coefficients:
-                 Estimate Std. Error z value Pr(>|z|)  
-(Intercept)       -4.3971    16.5115  -0.266   0.7900  
-ppi_value          0.1793     0.5285   0.339   0.7344  
-genreAction-RPG   17.4241  2657.3640   0.007   0.9948  
-genreFPS           0.5111     1.3228   0.386   0.6992  
-genreSports       -2.1778     0.8856  -2.459   0.0139 *
+                Estimate Std. Error z value Pr(>|z|)   
+(Intercept)      2.03173   10.85496   0.187  0.85153   
+ppi_value       -0.03913    0.34758  -0.113  0.91037   
+genreAction-RPG  1.32540    0.86049   1.540  0.12349   
+genreFPS        -0.23945    0.71613  -0.334  0.73810   
+genreSports     -2.13659    0.70624  -3.025  0.00248 **
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 52.925  on 39  degrees of freedom
-Residual deviance: 36.733  on 35  degrees of freedom
-AIC: 46.733
+    Null deviance: 103.939  on 77  degrees of freedom
+Residual deviance:  82.677  on 73  degrees of freedom
+AIC: 92.677
 
-Number of Fisher Scoring iterations: 17
+Number of Fisher Scoring iterations: 4
 
 
 > summary(h4_m3)
@@ -58,18 +58,18 @@ glm(formula = has_upscaling ~ ppi_value + time_index, family = binomial,
     data = h4_df)
 
 Coefficients:
-            Estimate Std. Error z value Pr(>|z|)  
-(Intercept)  -9.7439    13.3986  -0.727    0.467  
-ppi_value     0.2559     0.4209   0.608    0.543  
-time_index    0.3467     0.2000   1.734    0.083 .
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -13.1384    11.0273  -1.191    0.233    
+ppi_value     0.2860     0.3487   0.820    0.412    
+time_index    0.6945     0.1636   4.246 2.18e-05 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 52.925  on 39  degrees of freedom
-Residual deviance: 49.615  on 37  degrees of freedom
-AIC: 55.615
+    Null deviance: 103.939  on 77  degrees of freedom
+Residual deviance:  80.987  on 75  degrees of freedom
+AIC: 86.987
 
 Number of Fisher Scoring iterations: 4
 
@@ -80,7 +80,7 @@ Odds ratios:
 
 > print(exp(coef(h4_m1)))
 (Intercept)   ppi_value 
- 0.08216075  1.10188869 
+  3.9016074   0.9717256 
 
 > sink()
 
@@ -100,17 +100,19 @@ glm(formula = has_upscaling ~ dc_revenue, family = binomial,
     data = h4b_df)
 
 Coefficients:
-            Estimate Std. Error z value Pr(>|z|)
-(Intercept) 0.016885   0.442139   0.038     0.97
-dc_revenue  0.012971   0.008561   1.515     0.13
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -0.676540   0.357086  -1.895 0.058143 .  
+dc_revenue   0.030056   0.008525   3.525 0.000423 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 52.925  on 39  degrees of freedom
-Residual deviance: 50.254  on 38  degrees of freedom
-AIC: 54.254
+    Null deviance: 103.939  on 77  degrees of freedom
+Residual deviance:  82.963  on 76  degrees of freedom
+AIC: 86.963
 
-Number of Fisher Scoring iterations: 4
+Number of Fisher Scoring iterations: 5
 
 
 > summary(h4b_m2)
@@ -120,22 +122,22 @@ glm(formula = has_upscaling ~ dc_revenue + genre, family = binomial,
     data = h4b_df)
 
 Coefficients:
-                  Estimate Std. Error z value Pr(>|z|)  
-(Intercept)        0.69304    0.73659   0.941   0.3468  
-dc_revenue         0.01497    0.01102   1.359   0.1742  
-genreAction-RPG   16.83733 2538.34370   0.007   0.9947  
-genreFPS           0.69971    1.29769   0.539   0.5898  
-genreSports       -2.34723    0.93999  -2.497   0.0125 *
+                Estimate Std. Error z value Pr(>|z|)   
+(Intercept)     -0.27337    0.52420  -0.521  0.60202   
+dc_revenue       0.03411    0.01076   3.171  0.00152 **
+genreAction-RPG  0.64543    0.95266   0.678  0.49809   
+genreFPS         0.13946    0.76671   0.182  0.85567   
+genreSports     -2.64820    0.91286  -2.901  0.00372 **
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 52.925  on 39  degrees of freedom
-Residual deviance: 34.804  on 35  degrees of freedom
-AIC: 44.804
+    Null deviance: 103.939  on 77  degrees of freedom
+Residual deviance:  65.778  on 73  degrees of freedom
+AIC: 75.778
 
-Number of Fisher Scoring iterations: 17
+Number of Fisher Scoring iterations: 6
 
 
 > summary(h4b_m3)
@@ -146,17 +148,17 @@ glm(formula = has_upscaling ~ dc_revenue + time_index, family = binomial,
 
 Coefficients:
              Estimate Std. Error z value Pr(>|z|)
-(Intercept) -1.329602   2.550160  -0.521    0.602
-dc_revenue   0.002964   0.020308   0.146    0.884
-time_index   0.258427   0.482205   0.536    0.592
+(Intercept) -3.196944   2.062840  -1.550    0.121
+dc_revenue   0.009538   0.017341   0.550    0.582
+time_index   0.484880   0.387474   1.251    0.211
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 52.925  on 39  degrees of freedom
-Residual deviance: 49.963  on 37  degrees of freedom
-AIC: 55.963
+    Null deviance: 103.939  on 77  degrees of freedom
+Residual deviance:  81.346  on 75  degrees of freedom
+AIC: 87.346
 
-Number of Fisher Scoring iterations: 4
+Number of Fisher Scoring iterations: 5
 
 
 > cat("\nOdds ratios:\n")
@@ -165,6 +167,6 @@ Odds ratios:
 
 > print(exp(coef(h4b_m1)))
 (Intercept)  dc_revenue 
-   1.017028    1.013056 
+  0.5083728   1.0305124 
 
 > sink()

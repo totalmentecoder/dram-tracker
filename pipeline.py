@@ -54,7 +54,7 @@ FRED_SERIES = {
     "memory_ppi": "PCU334413A334413A",   # Memory chips specifically
 }
 
-# Steam Games: impèorted from games_list.py
+# Steam Games: imported from games_list.py
 from games_list import STEAM_GAMES
 
 # ── Database setup ───────────────────────────────────────────────────────────
@@ -292,6 +292,8 @@ def fetch_steam_requirements(conn: sqlite3.Connection, delay: float = 1.5) -> pd
             pc_reqs  = details.get("pc_requirements", {})
             rel_date = details.get("release_date", {}).get("date", "")
 
+            if isinstance(pc_reqs, list):
+                pc_reqs = {}
             min_req_raw = pc_reqs.get("minimum", "")
             rec_req_raw = pc_reqs.get("recommended", "")
 
