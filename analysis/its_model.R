@@ -273,6 +273,8 @@ ggplot(df_chow, aes(x = time_index, y = min_ram_gb, color = factor(break_dummy))
        x = "Time Index", y = "Minimum RAM (GB)", color = "Period") +
   theme_minimal()
 
+ggsave("analysis/chow_plot.png", width = 8, height = 5, dpi = 300)
+
 # ── H2: Upscaling Adoption Logistic Regression ───────────────────────────────
 cat("\n=== H2: AI Upscaling Adoption ===\n")
 
@@ -529,3 +531,6 @@ anova(m_restricted, m_unrestricted)
 summary(m1)
 summary(m2)
 summary(m3)
+
+
+summary(m_sens)
