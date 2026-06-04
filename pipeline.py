@@ -554,7 +554,7 @@ def build_dashboard_nogames(conn: sqlite3.Connection) -> go.Figure:
         fig.add_trace(
             go.Scatter(x=ppi_df["date"], y=ppi_df["value"],
                       mode="lines", name="Semiconductor PPI",
-                      line=dict(color="#00b4d8", width=2)),
+                      line=dict(color="#d80000", width=2)),
             row=1, col=1,
         )
         fig.add_vline(x="2022-01-01", line_dash="dash",
